@@ -1,0 +1,14 @@
+# general
+**/node_modules
+**/build
+
+# env
+**/env.yml
+**/.env
+
+# configs
+**/config.js
+
+# Serverless
+backend/.webpack
+backend/.serverless

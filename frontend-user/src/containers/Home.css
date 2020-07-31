@@ -1,0 +1,21 @@
+#mainNav {
+  border-bottom: none;
+}
+
+.home .page-section.has-gallery {
+  padding-bottom: 0;
+}
+
+.home .photo-gallery {
+  padding-top: 8rem;
+  min-height: 700px;
+}
+
+.home .photo-gallery img {
+  width: 100%;
+}
+
+.home .contact-form {
+  padding: 1em;
+  border: 1px solid #CCC;
+}

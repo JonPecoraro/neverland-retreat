@@ -1,0 +1,223 @@
+service: neverland-retreat
+
+# Create an optimized package for our functions 
+package:
+  individually: true
+
+plugins:
+  - serverless-bundle # Package our functions with Webpack
+  - serverless-offline
+  - serverless-dotenv-plugin # Load .env as environment variables
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  tableName: ${self:custom.stage}-neverland-retreat
+  siteNameBucket: ${self:custom.stage}.neverland-retreat.com
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  region: us-east-1
+
+  environment:
+    tableName: ${self:custom.tableName}
+    stripeSecretKey: ${env:STRIPE_SECRET_KEY}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - "Fn::GetAtt": [ NeverlandRetreatTable, Arn ]
+
+functions:
+  createAmenity:
+    handler: functions/create-amenity.main
+    events:
+      - http:
+          path: amenities
+          method: post
+          cors: true
+          authorizer: aws_iam
+  getAmenity:
+    handler: functions/get-amenity.main
+    events:
+      - http:
+          path: amenities/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  listAmenities:
+    handler: functions/list-amenities.main
+    events:
+      - http:
+          path: amenities
+          method: get
+          cors: true
+          authorizer: aws_iam
+  updateAmenity:
+    handler: functions/update-amenity.main
+    events:
+      - http:
+          path: amenities/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  deleteAmenity:
+    handler: functions/delete-amenity.main
+    events:
+      - http:
+          path: amenities/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  createImage:
+    handler: functions/create-image.main
+    events:
+      - http:
+          path: images
+          method: post
+          cors: true
+          authorizer: aws_iam
+  getImage:
+    handler: functions/get-image.main
+    events:
+      - http:
+          path: images/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  listImages:
+    handler: functions/list-images.main
+    events:
+      - http:
+          path: images
+          method: get
+          cors: true
+          authorizer: aws_iam
+  updateImage:
+    handler: functions/update-image.main
+    events:
+      - http:
+          path: images/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  deleteImage:
+    handler: functions/delete-image.main
+    events:
+      - http:
+          path: images/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  createCalendar:
+    handler: functions/create-calendar.main
+    events:
+      - http:
+          path: calendars
+          method: post
+          cors: true
+          authorizer: aws_iam
+  getCalendar:
+    handler: functions/get-calendar.main
+    events:
+      - http:
+          path: calendars/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  listCalendars:
+    handler: functions/list-calendars.main
+    events:
+      - http:
+          path: calendars
+          method: get
+          cors: true
+          authorizer: aws_iam
+  updateCalendar:
+    handler: functions/update-calendar.main
+    events:
+      - http:
+          path: calendars/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  deleteCalendar:
+    handler: functions/delete-calendar.main
+    events:
+      - http:
+          path: calendars/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  getCalendarData:
+    handler: functions/get-calendar-data.main
+    events:
+      - http:
+          path: calendar-data
+          method: get
+          cors: true
+          authorizer: aws_iam
+  createBooking:
+    handler: functions/create-booking.main
+    events:
+      - http:
+          path: bookings
+          method: post
+          cors: true
+          authorizer: aws_iam
+  getBooking:
+    handler: functions/get-booking.main
+    events:
+      - http:
+          path: bookings/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  listBookings:
+    handler: functions/list-bookings.main
+    events:
+      - http:
+          path: bookings
+          method: get
+          cors: true
+          authorizer: aws_iam
+  updateBooking:
+    handler: functions/update-booking.main
+    events:
+      - http:
+          path: bookings/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  deleteBooking:
+    handler: functions/delete-booking.main
+    events:
+      - http:
+          path: bookings/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+  billing:
+    handler: functions/billing.main
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam
+
+resources:
+  - ${file(resources/api-gateway.yml)}
+  - ${file(resources/dynamodb.yml)}
+  - ${file(resources/s3.yml)}
+  - ${file(resources/cognito-user-pool.yml)}
+  - ${file(resources/cognito-identity-pool.yml)}

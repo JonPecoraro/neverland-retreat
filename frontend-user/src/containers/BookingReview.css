@@ -1,0 +1,20 @@
+.bookingReview #review-booking {
+  padding-top: 0;
+}
+
+.bookingReview .booking-date-display,
+.bookingReview .icon-display {
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  padding: 0.8em;
+}
+
+.bookingReview .booking-date-display {
+  background-color: #eee;
+}
+
+.bookingReview img {
+  object-fit: cover;
+  vertical-align: bottom;
+}

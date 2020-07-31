@@ -1,0 +1,38 @@
+.ReservationForm input {
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  min-width: 300px;
+}
+
+.ReservationForm .btn {
+  width: 100%;
+}
+
+.ReservationForm .display-container {
+  display: inline-block;
+  margin: auto;
+  background-color: #343a40;
+  border-radius: 25px;
+  border: 2px solid #fff;
+  padding: 1rem; 
+}
+
+/* Begin override of react-datepicker styles */
+.ReservationForm .react-datepicker__day--excluded {
+  position: relative;
+}
+
+.ReservationForm .react-datepicker__day--excluded:after {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 1px;
+  background: #aaa;
+  content: "";
+  width: 100%;
+  display: block;
+}
+
+.ReservationForm .react-datepicker__day--outside-month {
+  visibility: hidden;
+}
+/* End override of react-datepicker styles */

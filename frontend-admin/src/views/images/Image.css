@@ -1,0 +1,11 @@
+.image .crop-container {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 1em;
+  position: relative;
+}
+
+.image img.preview {
+  width: 100%;
+  overflow: hidden;
+}

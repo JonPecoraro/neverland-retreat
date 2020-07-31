@@ -1,0 +1,10 @@
+{
+  "queryStringParameters": {
+    "url": "https://www.airbnb.com/calendar/ical/38512588.ics?s=801f978112180a7fa1f95b6f06b39e4b"
+  },
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}

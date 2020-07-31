@@ -1,0 +1,20 @@
+.CalendarWidget .react-calendar {
+  position: relative;
+  margin: auto;
+}
+.CalendarWidget .react-calendar__month-view__days__day {
+  color: #000;
+}
+
+.CalendarWidget .booked-date {
+  display: inline-block;
+  position: relative;
+  background: url(http://i.piccy.info/i7/c7a432fe0beb98a3a66f5b423b430423/1-5-1789/1066503/lol.png);
+  background-size: 25% 50%;
+  color: #999;
+}
+
+.CalendarWidget .event-details {
+  margin-top: 1em;
+  text-align: left;
+}
